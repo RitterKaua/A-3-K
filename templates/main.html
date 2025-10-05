@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kaua ❤️ Anie Julie</title>
+    <link rel="stylesheet" href="../static/css/main.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  </head>
+  <body>
+    <!-- Heartbeat Background -->
+    <div class="heartbeat-bg"></div>
+
+    <!-- Starry Sky -->
+    <div class="starry-sky" id="starrySky"></div>
+
+    <!-- Falling Petals -->
+    <div class="petals-container" id="petalsContainer"></div>
+
+    <!-- Background Hearts Animation -->
+    <div class="hearts-container"></div>
+
+    <!-- Fixed Initial Phrase -->
+    <div class="fixed-phrase" id="fixedPhrase">
+      <p class="phrase-text" id="phraseText">
+        Desde o dia que te conheci, tudo mudou... 💕
+      </p>
+    </div>
+
+    <!-- Header Section -->
+    <header class="hero-section">
+      <div class="hero-content">
+        <h1 class="couple-names">
+          <span class="name kaua">Kaua Ritter</span>
+          <i class="fas fa-heart heart-icon"></i>
+          <span class="name anie">Anie Julie</span>
+        </h1>
+        <p class="love-subtitle">Nosso amor desde 4 de setembro de 2025</p>
+
+        <!-- Surprise Button dentro do header -->
+        <button class="header-surprise-btn" onclick="surpriseAnimation()">
+          Aperte aqui se sentir saudade 💖
+        </button>
+      </div>
+    </header>
+
+    <!-- Love Clock Section -->
+    <section class="love-clock-section">
+      <div class="container">
+        <h2 class="section-title">Relógio do Nosso Amor</h2>
+        <div class="love-clock">
+          <div class="clock-item">
+            <div class="clock-number" id="totalDays">0</div>
+            <div class="clock-label">Dias Juntos</div>
+          </div>
+          <div class="clock-item">
+            <div class="clock-number" id="totalHours">0</div>
+            <div class="clock-label">Horas de Amor</div>
+          </div>
+          <div class="clock-item">
+            <div class="clock-number" id="totalMinutes">0</div>
+            <div class="clock-label">Minutos Especiais</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Counter Section -->
+    <section class="counter-section">
+      <div class="container">
+        <h2 class="section-title">Juntos há</h2>
+        <div class="time-display">
+          <div class="time-unit">
+            <span class="time-number" id="years">0</span>
+            <span class="time-label">Anos</span>
+          </div>
+          <div class="time-unit">
+            <span class="time-number" id="months">0</span>
+            <span class="time-label">Meses</span>
+          </div>
+          <div class="time-unit">
+            <span class="time-number" id="days">0</span>
+            <span class="time-label">Dias</span>
+          </div>
+          <div class="time-unit">
+            <span class="time-number" id="hours">0</span>
+            <span class="time-label">Horas</span>
+          </div>
+          <div class="time-unit">
+            <span class="time-number" id="minutes">0</span>
+            <span class="time-label">Minutos</span>
+          </div>
+          <div class="time-unit">
+            <span class="time-number" id="seconds">0</span>
+            <span class="time-label">Segundos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Photo Gallery Section -->
+    <section class="gallery-section">
+      <div class="container">
+        <h2 class="section-title">Nossos Momentos</h2>
+
+        <!-- Main Photo -->
+        <div class="main-photo">
+          <img
+            src="../static/imgs/main.jpg"
+            alt="Foto principal do casal"
+            class="main-img"
+            onclick="openModal('mainPhoto')"
+            id="mainPhoto"
+          />
+          <div class="main-photo-caption">Nossa foto favorita 💕</div>
+        </div>
+
+        <div class="photo-grid">
+          <div class="photo-card" onclick="openModal('photo1')">
+            <img
+              src="../static/imgs/laugh.jpg"
+              alt="Rindo juntos"
+              id="photo1"
+            />
+            <div class="photo-overlay">
+              <i class="fas fa-laugh"></i>
+              <span>Te Amo</span>
+            </div>
+          </div>
+          <div class="photo-card" onclick="openModal('photo2')">
+            <img
+              src="../static/imgs/silly.jpg"
+              alt="Fazendo caretas"
+              id="photo2"
+            />
+            <div class="photo-overlay">
+              <i class="fas fa-grin-tongue"></i>
+              <span>Te Amo</span>
+            </div>
+          </div>
+          <div class="photo-card" onclick="openModal('photo3')">
+            <img
+              src="../static/imgs/adventure.jpg"
+              alt="Aventura maluca"
+              id="photo3"
+            />
+            <div class="photo-overlay">
+              <i class="fas fa-grin-beam"></i>
+              <span>Te Amo</span>
+            </div>
+          </div>
+          <div class="photo-card" onclick="openModal('photo4')">
+            <img
+              src="../static/imgs/selfie.jpg"
+              alt="Selfie descontraída"
+              id="photo4"
+            />
+            <div class="photo-overlay">
+              <i class="fas fa-camera"></i>
+              <span>Te Amo</span>
+            </div>
+          </div>
+          <div class="photo-card" onclick="openModal('photo5')">
+            <img
+              src="../static/imgs/playing.jpg"
+              alt="Brincando juntos"
+              id="photo5"
+            />
+            <div class="photo-overlay">
+              <i class="fas fa-gamepad"></i>
+              <span>Te Amo</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Video Section -->
+    <section class="video-section">
+      <div class="container">
+        <h2 class="section-title">Nosso Vídeo Especial</h2>
+        <div class="video-container">
+          <video
+            id="loveVideo"
+            controls
+            poster="../static/imgs/main.jpg"
+            preload="metadata"
+          >
+            <source
+              src="../static/videos/our-love-video.mp4"
+              type="video/mp4"
+            />
+            <source
+              src="../static/videos/our-love-video.webm"
+              type="video/webm"
+            />
+            <p>
+              Seu navegador não suporta vídeos HTML5.
+              <a href="../static/videos/our-love-video.mp4">Baixe nosso vídeo</a
+              >.
+            </p>
+          </video>
+          <div class="video-caption">
+            <p>Momentos especiais capturados para sempre 🎬💕</p>
+            <div class="video-controls-custom">
+              <button class="video-btn" onclick="playPauseVideo()">
+                <i class="fas fa-play" id="playIcon"></i>
+              </button>
+              <button class="video-btn" onclick="muteUnmuteVideo()">
+                <i class="fas fa-volume-up" id="volumeIcon"></i>
+              </button>
+              <button class="video-btn" onclick="fullscreenVideo()">
+                <i class="fas fa-expand"></i>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Love Messages Section -->
+    <section class="messages-section">
+      <div class="container">
+        <h2 class="section-title">Mensagem do Coração</h2>
+        <div class="love-message-container">
+          <div class="love-message" id="loveMessage">
+            <i class="fas fa-quote-left quote-icon"></i>
+            <p id="messageText">Carregando mensagem de amor...</p>
+            <i class="fas fa-quote-right quote-icon"></i>
+          </div>
+          <button class="new-message-btn" onclick="showNewMessage()">
+            <i class="fas fa-sync-alt"></i> Nova Mensagem
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Special Places Map Section -->
+    <section class="map-section">
+      <div class="container">
+        <h2 class="section-title">Nossos Lugares Especiais</h2>
+        <div class="map-container">
+          <div id="specialPlacesMap"></div>
+          <div class="map-legend">
+            <div class="legend-item">
+              <span class="legend-marker first-meeting">💕</span>
+              <span>Primeiro Encontro</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-marker first-kiss">💋</span>
+              <span>Primeiro Beijo</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-marker special-date">🌟</span>
+              <span>Casa da Tia Mara</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-marker favorite-place">❤️</span>
+              <span>Sexo.</span>
+            </div>
+            <div class="legend-item">
+              <span class="legend-marker future-home">🏠</span>
+              <span>Nossa Futura Casa (Tu ja morando nela)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Milestones Section -->
+    <section class="milestones-section">
+      <div class="container">
+        <h2 class="section-title">Marcos do Nosso Amor</h2>
+        <div class="timeline">
+          <div class="milestone-item">
+            <div class="milestone-date">04/09/2025</div>
+            <div class="milestone-content">
+              <h3>Começamos a namorar</h3>
+              <p>O dia que mudou nossas vidas para sempre ❤️</p>
+            </div>
+          </div>
+          <div class="milestone-item">
+            <div class="milestone-date">Hoje</div>
+            <div class="milestone-content">
+              <h3>Ainda mais apaixonados</h3>
+              <p>Cada dia que passa, nosso amor só cresce mais!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Audio for Custom Music -->
+    <audio id="customMusic" loop preload="auto" autoplay muted>
+      <!-- Adicione aqui o caminho para sua música personalizada -->
+      <source src="../static/audio/nossa-musica.mp3" type="audio/mpeg" />
+      <source src="../static/audio/nossa-musica.wav" type="audio/wav" />
+    </audio>
+
+    <!-- Photo Modal -->
+    <div class="modal" id="photoModal" onclick="closeModal()">
+      <div class="modal-content">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Foto ampliada" />
+      </div>
+    </div>
+
+    <!-- Surprise Animation Overlay -->
+    <div class="surprise-overlay" id="surpriseOverlay">
+      <div class="surprise-content">
+        <div class="surprise-gif">
+          <div class="animated-heart">💖</div>
+          <div class="love-text">Te amo muito! ❤️</div>
+        </div>
+        <button class="close-surprise" onclick="closeSurprise()">
+          <i class="fas fa-times"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Star Click Message -->
+    <div class="star-message" id="starMessage">
+      <p></p>
+    </div>
+
+    <script src="../static/js/main.js"></script>
+  </body>
+</html>
